@@ -1,0 +1,90 @@
+1. Setup
+   1. Setup virtual server (with VMware 16.2.5 and Windonw server 2019)
+      - Setting DHCP IP for computer
+      - Network and Internet -> Network Conections -> Ethernet -> Properties
+      - TCP/IPv4 (chia ip -> OK)
+   2. What is Active Directory?
+   3. Install Active Directory (AD)
+      - Start -> Server Manager
+      - Dashboard -> Add roles and features
+      - Next -> Server Roles -> Checked:
+        - Active Directory Domain Services
+        - Active Directory Lighweigth Domain Services
+        - DNS Server
+      - Next -> Install -> Close
+   4. Install IIS Server
+      - Start -> Server Manager
+      - Dashboard -> Add roles and features
+      - Next -> Server Roles -> Checked Web Server (IIS)
+      - Web Server -> Application Development -> CGI
+      - Next -> Install -> Close
+
+2. Deploy source on IIS
+ 1. install php for windown and for IIS
+    1. Download php manager for IIS
+       - Download and run https://www.iis.net/downloads/community/2018/05/php-manager-150-for-iis-10
+
+    2. Download php for windown
+       - save to C:\PHP\8.1 (have save folder other)
+       - copy php.ini-development || php.ini-production -> php.ini
+       - edit environment path
+         - Control Pannel -> System and Security -> System -> Advanced system settings
+         - Advanced -> Environment variables
+         - System variables -> Path -> Edit -> New -> C:\PHP\8.1 -> OK
+      - enable setting in php.ini: (remove ;)
+         - extension=fileinfo
+         - extension=openssl
+         - extension=curl
+         - extension=mysqli
+         - extension=pdo_mysql
+         - extension=ldap
+         - extension_dir = "ext"
+
+ 2. install composer for windown
+    - Download https://getcomposer.org/download
+    - Run and restart windown
+
+ 3. install nodejs/npm for windown
+    - Download and run: https://nodejs.org/en/download
+
+ 4. Open cmd check:
+    - php -v | composer -v | node -v | npm -v ( => down and run vc_redist.x64)
+    - if error vcruntime-140-dll
+      - Download and run vc_redist.x64
+        - search: other tools... and download
+        - link download: https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019
+
+ 5. Create project
+    - CD C:\inetpub\wwwroot
+    - composer create-project laravel/laravel active-directory
+    - setting permission user IIS for folder:
+      - CD active-directory
+      - Folder bootstrap -> properties -> security -> Add -> IUSR -> Full control -> Apply -> OK
+      - Folder storage -> properties -> security -> Add -> IUSR -> Full control -> Apply -> OK
+    - Install url rewrite for IIS
+      - Download and run https://www.iis.net/downloads/microsoft/url-rewrite (english x64 installer)
+      - CD active-directory/public:
+        - Create file web.config (thay cho file .htaccess)
+        - https://laravel-tricks.com/tricks/rewrite-urls-in-laravel-on-windows-with-iis
+
+ 6. Setting IIS Server
+    - Start -> Server Manager -> Tools -> Internet Information Services (IIS) Manager
+    - Handler Mappings -> Add Module Mapping: (if use phpmanager then except)
+      - Request path: *.php
+      - Module: FastCgiModlue
+      - Executable: C:\PHP\8.1\php-cgi.exe
+      - Name: php81_fast_cgi
+    - Sites -> Add Website:
+      - Site name: activce-directory
+      - Physical path: C:\inetpub\wwwroot\active-directory\public
+      - Host name: active-directory.test
+
+ 7. Install MySQL (services.msc)
+    - Download and run setup https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.25.0.msi
+
+ 8. Setting /etc/hosts
+    - 127.0.0.1   active-directory.test
+
+ 9. Access link: active-directory.test
+
+3. Setup Ldaprecord with laravel
