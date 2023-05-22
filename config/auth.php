@@ -65,19 +65,26 @@ return [
         //     'model' => App\Models\User::class,
         // ],
 
+        /*
+         @url https://ldaprecord.com/docs/laravel/v2/auth
+        */
         'users' => [
             'driver' => 'ldap',
-            'model' => LdapRecord\Models\ActiveDirectory\User::class,
-            'rules' => [],
-            'database' => [
-                'model' => App\Models\User::class,
-                'sync_passwords' => false,
-                'sync_attributes' => [
-                    'name' => 'cn',
-                    'username' => 'uid',
-                    'email' => 'mail',
-                ],
+            'model' => App\Ldap\Models\User::class,
+            'rules' => [
+                App\Ldap\Rules\OnlyAdministrators::class,
             ],
+
+            // use Synchronized Database Authentication, uncoment it
+            // 'database' => [
+            //     'model' => App\Models\User::class,
+            //     'sync_passwords' => false,
+            //     'sync_attributes' => [
+            //         'name' => 'cn',
+            //         'username' => 'uid',
+            //         'email' => 'mail',
+            //     ],
+            // ],
         ],
 
         // 'users' => [

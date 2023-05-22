@@ -126,6 +126,20 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'mysql' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/mysql.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'replace_placeholders' => true,
+        ],
+
+        'ldap' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/ldap.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'replace_placeholders' => true,
+        ],
     ],
 
 ];
