@@ -26,7 +26,7 @@ class User extends ActiveDirectoryUser
     {
         parent::boot();
 
-        return static::addGlobalScope(new OnlyAdministratorCS);
+        // return static::addGlobalScope(new OnlyAdministratorCS);
     }
 
     /**
