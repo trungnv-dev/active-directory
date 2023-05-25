@@ -47,7 +47,11 @@ class LoginRequest extends FormRequest
             'password' => $this->get('password'),
         ];
 
-        if (! Auth::attempt($credentials, $this->boolean('remember'))) {
+        $attempt = request()->is('admin*')
+            ? Auth::guard('admin')->attempt($credentials, $this->boolean('remember'))
+            : Auth::attempt($credentials, $this->boolean('remember'));
+
+        if (! $attempt) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
