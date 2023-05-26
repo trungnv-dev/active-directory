@@ -19,7 +19,7 @@ class SiteController extends Controller
      */
     public function index(Request $request): View
     {
-        return view('sites.create', [
+        return view('admin.sites.create', [
             'user' => $request->user(),
         ]);
     }
@@ -29,7 +29,7 @@ class SiteController extends Controller
      */
     public function create(Request $request): View
     {
-        return view('sites.create', [
+        return view('admin.sites.create', [
             'user' => $request->user(),
         ]);
     }
