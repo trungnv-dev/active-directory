@@ -1,12 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SiteController;
-use App\Ldap\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use LdapRecord\Models\Model;
 
 /*
 |--------------------------------------------------------------------------
