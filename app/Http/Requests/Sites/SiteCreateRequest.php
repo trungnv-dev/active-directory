@@ -22,7 +22,7 @@ class SiteCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'host' => ['nullable'],
+            'hosts' => ['nullable'],
             'username' => ['nullable'],
             'password' => ['nullable'],
             'port' => ['nullable'],

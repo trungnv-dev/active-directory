@@ -20,4 +20,15 @@ class Site extends Model
         'name',
         'connection',
     ];
+
+    /**
+     * Interact with the site's connection.
+     */
+    protected function connection(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => json_decode($value, true),
+            set: fn (string $value) => json_encode($value),
+        );
+    }
 }

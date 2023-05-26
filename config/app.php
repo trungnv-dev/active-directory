@@ -159,6 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Providers\LdapServiceProvider::class,
 
         /*
          * Application Service Providers...

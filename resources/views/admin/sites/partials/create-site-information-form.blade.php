@@ -13,9 +13,9 @@
         @csrf
 
         <div>
-            <x-input-label for="host" :value="__('Hosts')" />
-            <x-text-input id="host" name="host" type="text" class="mt-1 block w-full" :value="old('host')" required autofocus placeholder="192.168.1.1" />
-            <x-input-error class="mt-2" :messages="$errors->get('host')" />
+            <x-input-label for="hosts" :value="__('Hosts')" />
+            <x-text-input id="hosts" name="hosts" type="text" class="mt-1 block w-full" :value="old('hosts')" required autofocus placeholder="192.168.1.1" />
+            <x-input-error class="mt-2" :messages="$errors->get('hosts')" />
         </div>
 
         <div>
