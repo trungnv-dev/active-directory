@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\Prefix;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,11 +36,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->prefix('sites/{name}')
+                ->prefix(Prefix::SITES->name().'/{name}')
                 ->group(base_path('routes/web.php'));
 
             Route::middleware('web')
-                ->prefix('admin')
+                ->prefix(Prefix::ADMIN->name())
                 ->group(base_path('routes/admin.php'));
         });
     }
