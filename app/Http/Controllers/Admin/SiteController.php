@@ -8,9 +8,9 @@ use App\Models\Site;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class SiteController extends Controller
 {
@@ -42,7 +42,10 @@ class SiteController extends Controller
     public function store(SiteCreateRequest $request): RedirectResponse
     {
         try {
-            Site::create(['connection' => json_encode($request->validated())]);
+            Site::create([
+                'name' => Str::uuid(),
+                'connection' => json_encode($request->validated())
+            ]);
     
             return redirect()->route('admin.sites.create')->withMessage('Success!');
         } catch (Exception $e) {
