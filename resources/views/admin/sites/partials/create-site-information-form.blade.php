@@ -48,16 +48,12 @@
             <x-input-error class="mt-2" :messages="$errors->get('timeout')" />
         </div>
 
-        <div>
+        <div class="flex items-center gap-4">
             <x-input-label for="use_ssl" :value="__('UseSSL')" />
-            <x-text-input id="use_ssl" name="use_ssl" type="checkbox" class="mt-1 block w-full" :value="old('use_ssl')" autofocus placeholder="5" />
-            <x-input-error class="mt-2" :messages="$errors->get('use_ssl')" />
-        </div>
+            <x-checkbox id="use_ssl" type="checkbox" name="use_ssl" :value="old('use_ssl', 1)" />
 
-        <div>
             <x-input-label for="use_tls" :value="__('UseTLS')" />
-            <x-text-input id="use_tls" name="use_tls" type="checkbox" class="mt-1 block w-full" :value="old('use_tls')" autofocus placeholder="5" />
-            <x-input-error class="mt-2" :messages="$errors->get('use_tls')" />
+            <x-checkbox id="use_tls" type="checkbox" name="use_tls" :value="old('use_tls', 1)" />
         </div>
 
         <div class="flex items-center gap-4">
