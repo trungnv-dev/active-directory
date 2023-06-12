@@ -50,7 +50,7 @@ class SiteController extends Controller
                 'connection' => json_encode($request->validated())
             ]);
     
-            return redirect()->route('admin.sites.create')->withMessage('Success!');
+            return redirect()->route('admin.sites.index')->withMessage('Success!');
         } catch (Exception $e) {
             Log::error("ERROR_CREATE_SITE::{$e->getMessage()}");
             return redirect()->route('admin.sites.create')->withInput($request->all())->withError('Failed!');
