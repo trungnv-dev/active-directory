@@ -1,5 +1,5 @@
 1. Setup
-   1. Setup virtual server (with VMware 16.2.5 and Windonw server 2019)
+   1. Setup virtual server (with VMware 16.2.5 and Windonw server 2019 || ec2 windown server 2019)
       - Setting DHCP IP for computer
       - Network and Internet -> Network Conections -> Ethernet -> Properties
       - TCP/IPv4 (chia ip -> OK)
@@ -9,13 +9,14 @@
       - Dashboard -> Add roles and features
       - Next -> Server Roles -> Checked:
         - Active Directory Domain Services
-        - Active Directory Lighweigth Domain Services
+        - Active Directory Lighweigth Domain Services (optional)
         - DNS Server
       - Next -> Install -> Close
    4. Install IIS Server
       - Start -> Server Manager
       - Dashboard -> Add roles and features
       - Next -> Server Roles -> Checked Web Server (IIS)
+      - Web Server -> Security -> SSL Certificate Support
       - Web Server -> Application Development -> CGI
       - Next -> Install -> Close
 
@@ -78,6 +79,9 @@
       - Site name: activce-directory
       - Physical path: C:\inetpub\wwwroot\active-directory\public
       - Host name: active-directory.test
+    - SSL Free
+      - Create info ssl on https://www.sslforfree.com -> save file csr
+      - Server Certificates
 
  7. Install MySQL (services.msc)
     - Download and run setup https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.25.0.msi
