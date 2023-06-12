@@ -38,6 +38,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
 
     Route::prefix('sites')->group(function () {
+        Route::get('/', [SiteController::class, 'index'])->name('admin.sites.index');
         Route::get('create', [SiteController::class, 'create'])->name('admin.sites.create');
         Route::post('create', [SiteController::class, 'store']);
     });

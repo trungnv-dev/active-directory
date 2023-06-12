@@ -19,8 +19,11 @@ class SiteController extends Controller
      */
     public function index(Request $request): View
     {
-        return view('admin.sites.create', [
-            'user' => $request->user(),
+        // $sites = Site::paginate(10);
+        // dd($sites->first()->connection['hosts']);
+        return view('admin.sites.index', [
+            'user'  => $request->user(),
+            'sites' => Site::paginate(10),
         ]);
     }
 

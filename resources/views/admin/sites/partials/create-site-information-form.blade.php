@@ -59,14 +59,14 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Create') }}</x-primary-button>
 
-            @if (session('status') === 'site-created')
+            @if (session()->has('message') || session()->has('error'))
                 <p
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Created.') }}</p>
+                >{{ session('message') ?? session('error') }}</p>
             @endif
         </div>
     </form>

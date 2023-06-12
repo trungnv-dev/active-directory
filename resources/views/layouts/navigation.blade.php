@@ -45,8 +45,8 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('admin.sites.create')">
-                            {{ __('Add Site') }}
+                        <x-dropdown-link :href="route('admin.sites.index')">
+                            {{ __('Sites') }}
                         </x-dropdown-link>
                         @endif
 
@@ -101,8 +101,8 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('admin.sites.create')">
-                    {{ __('Add Site') }}
+                <x-responsive-nav-link :href="route('admin.sites.index')">
+                    {{ __('Sites') }}
                 </x-responsive-nav-link>
                 @endif
 
